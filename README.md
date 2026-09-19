@@ -5,40 +5,40 @@
 [![Thesis: Bachelor Degree](https://img.shields.io/badge/Thesis-B.Sc.%20Electronic%20Engineering-red.svg)](https://www.unibo.it/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Performance analysis and Monte Carlo numerical evaluation of the **Weighted Centroid Localization (WCL)** algorithm in **Cell-Free Massive MIMO** wireless networks for next-generation (6G) positioning[cite: 31]. 
+Performance analysis and Monte Carlo numerical evaluation of the **Weighted Centroid Localization (WCL)** algorithm in **Cell-Free Massive MIMO** wireless networks for next-generation (6G) positioning.
 
-Developed as a Bachelor’s Thesis in Electronic Engineering at **Alma Mater Studiorum – Università di Bologna** (Department of Computer Science and Engineering, Campus of Cesena) under the supervision of **Prof. Ing. Enrico Testi**[cite: 31].
+Developed as a Bachelor’s Thesis in Electronic Engineering at **Alma Mater Studiorum – Università di Bologna** (Department of Computer Science and Engineering, Campus of Cesena) under the supervision of **Prof. Ing. Enrico Testi**.
 
 ---
 
 ## Theoretical Overview & Network Model
 
-Cell-Free Massive MIMO eliminates traditional cellular cell boundaries by deploying a dense, distributed set of Access Points (APs) connected to a Central Processing Unit (CPU) via fronthaul links, serving users via coherent spatial multiplexing[cite: 31].
+Cell-Free Massive MIMO eliminates traditional cellular cell boundaries by deploying a dense, distributed set of Access Points (APs) connected to a Central Processing Unit (CPU) via fronthaul links, serving users via coherent spatial multiplexing.
 
 ### 1. Spatial Deployment & Propagation Modeling
-- **Spatial Distribution:** APs are deployed on the 2D plane according to a homogeneous Poisson Point Process (PPP) with spatial density $\lambda \in [0.02, 0.20]$ APs/m²[cite: 31].
+- **Spatial Distribution:** APs are deployed on the 2D plane according to a homogeneous Poisson Point Process (PPP) with spatial density lambda in the range [0.02, 0.20] APs/m².
 - **Path-Loss Law:** Non-singular distance-dependent power attenuation governed by:
 
 $$P_R^U(r_i) = \frac{P_T^{AP}}{\mathcal{L}_0 (1 + r_i^\alpha)} \phi_i$$
 
-  where $\mathcal{L}_0 = 45\text{ dB}$ is the reference path loss at 1 meter, $\alpha \in \{2, 3\}$ is the path-loss exponent, and $\phi_i = e^{\sigma_s g_i}$ represents log-normal shadow fading with intensity $\sigma_{s,dB} \in [0, 6]\text{ dB}$[cite: 31].
-- **Marked Inhomogeneous PPP:** Active APs are dynamically selected via power thresholding ($\Omega_a = \{i : P_R^U(r_i) \ge P_{th}\}$ with $P_{th} = -60\text{ dBm}$), forming an inhomogeneous Marked PPP based on user proximity[cite: 31].
+  where L0 = 45 dB is the reference path loss at 1 meter, alpha in {2, 3} is the path-loss exponent, and phi_i = exp(sigma_s * g_i) represents log-normal shadow fading with intensity sigma_s,dB in [0, 6] dB.
+- **Marked Inhomogeneous PPP:** Active APs are dynamically selected via power thresholding (Omega_a = {i : P_R^U(r_i) >= P_th} with P_th = -60 dBm), forming an inhomogeneous Marked PPP based on user proximity.
 
 ### 2. Downlink Beacon-based Localization (DBL)
-The terminal estimates its two-dimensional position $\hat{l}_u = [\hat{x}_u, \hat{y}_u]^T$ via synchronous orthogonal beacon measurements[cite: 31]:
+The terminal estimates its two-dimensional position l_hat_u = [x_hat_u, y_hat_u]^T via synchronous orthogonal beacon measurements:
 
 $$\hat{l}_u = \frac{\sum_{i \in \Omega_a} w_i l_i \epsilon_i}{\sum_{i \in \Omega_a} w_i \epsilon_i}, \quad w_i = [P_R^U(r_i)]^\beta$$
 
-where $\beta > 0$ is a non-linear weighting exponent tuned to balance nearby versus distant anchor contributions[cite: 31].
+where beta > 0 is a non-linear weighting exponent tuned to balance nearby versus distant anchor contributions.
 
 ---
 
 ## Key Findings & Performance Benchmarks
 
-- **Density Scaling & Convergence:** Positioning Mean Squared Error (MSE) exhibits steep power-law decay as AP density scales[cite: 31]. Under moderate density ($\lambda = 0.06\text{ APs/m}^2$, $\sigma_{s,dB} = 0\text{ dB}$), the algorithm achieves coarse positioning errors below 1 m²[cite: 31].
-- **Dual DBL vs. UPL Equivalence:** Monte Carlo simulations confirm strict numerical equivalence between Downlink Beacon-based Localization (DBL) and Uplink Pilot-based Localization (UPL), proving algorithm consistency irrespective of link direction[cite: 31].
-- **Shadowing Mitigation via Weight Optimization:** In heavy fading regimes ($\sigma_{s,dB} = 4\text{ dB}$), tuning the weighting parameter to $\beta = 1.0$ halves the positioning MSE compared to lower weights (dropping from 1.6 m² to 0.7 m²)[cite: 31].
-- **Parametric Robustness:** The optimal weighting parameter $\beta^*$ remains quasi-invariant across changing AP spatial densities ($\lambda = 0.12\text{ APs/m}^2$ vs. $\lambda = 0.20\text{ APs/m}^2$), simplifying practical calibration in heterogeneous 6G topologies[cite: 31].
+- **Density Scaling & Convergence:** Positioning Mean Squared Error (MSE) exhibits steep power-law decay as AP density scales. Under moderate density (lambda = 0.06 APs/m², sigma_s,dB = 0 dB), the algorithm achieves coarse positioning errors below 1 m².
+- **Dual DBL vs. UPL Equivalence:** Monte Carlo simulations confirm strict numerical equivalence between Downlink Beacon-based Localization (DBL) and Uplink Pilot-based Localization (UPL), proving algorithm consistency irrespective of link direction.
+- **Shadowing Mitigation via Weight Optimization:** In heavy fading regimes (sigma_s,dB = 4 dB), tuning the weighting parameter to beta = 1.0 halves the positioning MSE compared to lower weights (dropping from 1.6 m² to 0.7 m²).
+- **Parametric Robustness:** The optimal weighting parameter beta* remains quasi-invariant across changing AP spatial densities (lambda = 0.12 APs/m² vs. lambda = 0.20 APs/m²), simplifying practical calibration in heterogeneous 6G topologies.
 
 ---
 
